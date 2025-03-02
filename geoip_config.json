@@ -1,0 +1,47 @@
+{
+  "input": [
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "inputDir": "./input"
+      }
+    }
+  ],
+  "output": [
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputDir": "./output",
+        "outputName": "allow.dat"
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputDir": "./output",
+        "outputName": "ipv4.dat",
+        "onlyIPType": "ipv4"
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputDir": "./output",
+        "outputName": "ipv6.dat",
+        "onlyIPType": "ipv6"
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputDir": "./output",
+        "oneFilePerList": true
+      }
+    }
+  ]
+}

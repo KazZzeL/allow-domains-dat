@@ -1,0 +1,109 @@
+name: Build .dat files
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "**/README.md"
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v4
+        with:
+          path: publish
+
+      - name: Checkout geosite
+        uses: actions/checkout@v4
+        with:
+          repository: v2fly/domain-list-community
+          sparse-checkout: .
+          path: geosite
+
+      - name: Checkout geoip
+        uses: actions/checkout@v4
+        with:
+          repository: v2fly/geoip
+          path: geoip
+
+      - name: Set environment variables
+        run: |
+          echo "ITDOG_REPO_PATH=https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main" >> $GITHUB_ENV
+          echo "RELEASE_NAME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+          echo "TAG_NAME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Setup Go for geosite
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: geosite/go.mod
+
+      - name: Download domains
+        run: |
+          cd geosite
+          mkdir -p input/russia-inside input/russia-outside input/ukraine-inside input/allow-domains input/allow-categories
+          curl -L "${ITDOG_REPO_PATH}/Russia/inside-raw.lst" -o input/russia-inside/list
+          curl -L "${ITDOG_REPO_PATH}/Russia/outside-raw.lst" -o input/russia-outside/list
+          curl -L "${ITDOG_REPO_PATH}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
+          for category in russia-inside russia-outside ukraine-inside; do
+            cp "input/${category}/list" "input/allow-domains/${category}"
+          done
+          for category in anime block geoblock news porn; do
+            mkdir "input/${category}-domains"
+            curl -L "${ITDOG_REPO_PATH}/Categories/${category}.lst" -o "input/${category}-domains/list"
+            cp "input/${category}-domains/list" "input/allow-categories/${category}"
+          done
+
+      - name: Build domains .dat files
+        run: |
+          cd geosite
+          for category in ./input/*/; do
+            go run ./ --datapath=${category}
+            mv dlc.dat "../publish/$(basename $category).dat"
+          done
+
+      - name: Setup Go for geoip
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: geoip/go.mod
+
+      - name: Download subnets
+        run: |
+          cd geoip
+          mkdir -p input
+          for domain in discord meta telegram twitter; do
+            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv4/${domain}.lst" -o input/${domain,,}
+            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv6/${domain}.lst" >> input/${domain,,}
+          done
+
+      - name: Build subnets .dat files
+        run: |
+          cd geoip
+          mkdir -p output
+          go run ./ -c ../publish/geoip_config.json
+          for filename in ./output/*.dat; do
+            mv $filename "../publish/$(basename $filename .dat)-subnets.dat"
+          done
+
+      - name: Generate hashes
+        run: |
+          cd publish
+          for filename in ./*.dat; do
+            sha256sum $filename > "${filename}.sha256sum"
+          done
+
+      - name: Release and upload assets
+        run: |
+          cd publish
+          gh release create ${{ env.TAG_NAME }} -t ${{ env.RELEASE_NAME }} ./*.dat ./*.dat.sha256sum
+        env:
+          GH_TOKEN: ${{ github.token }}

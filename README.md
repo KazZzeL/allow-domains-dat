@@ -52,7 +52,7 @@
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat.sha256sum)
 - **porn-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat)
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/xxxx-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat.sha256sum)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat.sha256sum)
 
 ### Geoip по признаку, откуда будет совершаться доступ
 

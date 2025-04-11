@@ -1,0 +1,43 @@
+name: Update latest release version
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current release version
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            latest_version.txt
+          sparse-checkout-cone-mode: false
+
+      - name: Fetch latest release version
+        run: |
+          curl -sL https://api.github.com/repos/itdoginfo/allow-domains/releases/latest | \
+          jq -r ".tag_name" > latest_version.txt
+
+      - name: Check for changed release version
+        id: git-check
+        run: echo "changed=$([ -z '`git status --porcelain`' ] && echo 'false' || echo 'true')" >> $GITHUB_OUTPUT
+
+      - name: Commit changed release version
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "New release version ($(head -n 1 latest_version.txt))"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Trigger .dat files build
+        if: steps.git-check.outputs.changed == 'true'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          event-type: trigger-dat-build

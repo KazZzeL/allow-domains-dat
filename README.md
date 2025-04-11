@@ -11,12 +11,15 @@
 ## Ссылки для скачивания
 ### Универсальные Geosite и Geoip
 
-- **allow-domains.dat** (содержит категории russia-inside, russia-outside, ukraine-inside): 
+- **allow-domains.dat** (содержит категории anime, block, geoblock, news, porn, russia-inside, russia-outside, ukraine-inside): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat.sha256sum)
-- **allow-categories.dat** (содержит категории anime, block, geoblock, news): 
+- **allow-categories.dat** (содержит категории anime, block, geoblock, news, porn): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-categories.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-categories.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-categories.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-categories.dat.sha256sum)
+- **allow-countries.dat** (содержит категории russia-inside, russia-outside, ukraine-inside): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat.sha256sum)
 - **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для discord, meta, telegram, twitter):
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum)
@@ -47,8 +50,8 @@
 - **news-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat.sha256sum)
-- **xxxx-domains.dat** (содержит категорию list): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/xxxx-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat)
+- **porn-domains.dat** (содержит категорию list): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/xxxx-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat.sha256sum)
 
 ### Geoip по признаку, откуда будет совершаться доступ

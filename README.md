@@ -1,4 +1,4 @@
-Файлы генерируются ежедневно примерно в 8:00 (МСК) на основе списков [itdoginfo/allow-domains](https://github.com/itdoginfo/allow-domains)
+Файлы генерируются в течение часа после обновления списков ITDog [itdoginfo/allow-domains](https://github.com/itdoginfo/allow-domains)
 
 Для сборки используются:
 - geosite: [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
@@ -6,7 +6,7 @@
 
 Также благодарность за вдохновение [unidcml/allow-domains-dat](https://github.com/unidcml/allow-domains-dat)
 
-!!! Для мобильных устройств (iOS, Android) рекомендуется использование специальных, а не универсальные Geosite и Geoip
+***!!! Для мобильных устройств (iOS, Android) рекомендуется использование специальных, а не универсальные Geosite и Geoip !!!***
 
 ## Ссылки для скачивания
 ### Универсальные Geosite и Geoip

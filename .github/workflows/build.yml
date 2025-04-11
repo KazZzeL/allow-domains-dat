@@ -107,3 +107,10 @@ jobs:
           gh release create ${{ env.TAG_NAME }} -t ${{ env.RELEASE_NAME }} ./*.dat ./*.dat.sha256sum
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - name: Trigger Happ routing rebuild
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.HAPP_ROUTING_TOKEN }}
+          repository: KazZzeL/allow-domains-happ-routing
+          event-type: trigger-workflow

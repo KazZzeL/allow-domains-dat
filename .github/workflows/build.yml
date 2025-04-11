@@ -50,17 +50,19 @@ jobs:
       - name: Download domains
         run: |
           cd geosite
-          mkdir -p input/russia-inside input/russia-outside input/ukraine-inside input/allow-domains input/allow-categories
+          mkdir -p input/russia-inside input/russia-outside input/ukraine-inside input/allow-domains input/allow-categories input/allow-countries
           curl -L "${ITDOG_REPO_PATH}/Russia/inside-raw.lst" -o input/russia-inside/list
           curl -L "${ITDOG_REPO_PATH}/Russia/outside-raw.lst" -o input/russia-outside/list
           curl -L "${ITDOG_REPO_PATH}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
           for category in russia-inside russia-outside ukraine-inside; do
             cp "input/${category}/list" "input/allow-domains/${category}"
+            cp "input/${category}/list" "input/allow-countries/${category}"
           done
           for category in anime block geoblock news porn; do
             mkdir "input/${category}-domains"
             curl -L "${ITDOG_REPO_PATH}/Categories/${category}.lst" -o "input/${category}-domains/list"
             cp "input/${category}-domains/list" "input/allow-categories/${category}"
+            cp "input/${category}-domains/list" "input/allow-domains/${category}"
           done
 
       - name: Build domains .dat files

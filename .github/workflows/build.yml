@@ -55,8 +55,8 @@ jobs:
           curl -L "${ITDOG_REPO_PATH}/Russia/outside-raw.lst" -o input/russia-outside/list
           curl -L "${ITDOG_REPO_PATH}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
           for category in russia-inside russia-outside ukraine-inside; do
-            cp "input/${category}/list" "input/allow-domains/${category}"
             cp "input/${category}/list" "input/allow-countries/${category}"
+            cp "input/${category}/list" "input/allow-domains/${category}"
           done
           for category in anime block geoblock news porn; do
             mkdir "input/${category}-domains"

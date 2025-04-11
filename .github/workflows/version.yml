@@ -24,7 +24,7 @@ jobs:
 
       - name: Check for changed release version
         id: git-check
-        run: echo "changed=$([ -z '`git status --porcelain`' ] && echo 'false' || echo 'true')" >> $GITHUB_OUTPUT
+        run: echo "changed=$([ -z "`git status --porcelain`" ] && echo 'false' || echo 'true')" >> $GITHUB_OUTPUT
 
       - name: Commit changed release version
         if: steps.git-check.outputs.changed == 'true'

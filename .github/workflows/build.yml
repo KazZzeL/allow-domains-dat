@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - "**/README.md"
-  schedule:
-    - cron: "0 5 * * *"
+    paths:
+      - "geoip_config.json"
+  repository_dispatch:
+    types: [trigger-dat-build]
   workflow_dispatch:
 
 permissions:

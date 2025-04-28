@@ -50,7 +50,7 @@ jobs:
       - name: Download domains
         run: |
           cd geosite
-          mkdir -p input/russia-inside input/russia-outside input/ukraine-inside input/allow-domains input/allow-categories input/allow-countries
+          mkdir -p input/russia-inside input/russia-outside input/ukraine-inside input/allow-domains input/allow-categories input/allow-countries input/allow-services
           curl -L "${ITDOG_REPO_PATH}/Russia/inside-raw.lst" -o input/russia-inside/list
           curl -L "${ITDOG_REPO_PATH}/Russia/outside-raw.lst" -o input/russia-outside/list
           curl -L "${ITDOG_REPO_PATH}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
@@ -62,6 +62,12 @@ jobs:
             mkdir "input/${category}-domains"
             curl -L "${ITDOG_REPO_PATH}/Categories/${category}.lst" -o "input/${category}-domains/list"
             cp "input/${category}-domains/list" "input/allow-categories/${category}"
+            cp "input/${category}-domains/list" "input/allow-domains/${category}"
+          done
+          for category in discord hdrezka meta telegram tiktok twitter youtube; do
+            mkdir "input/${category}-domains"
+            curl -L "${ITDOG_REPO_PATH}/Services/${category}.lst" -o "input/${category}-domains/list"
+            cp "input/${category}-domains/list" "input/allow-services/${category}"
             cp "input/${category}-domains/list" "input/allow-domains/${category}"
           done
 
@@ -93,14 +99,14 @@ jobs:
           mkdir -p output
           go run ./ -c ../publish/geoip_config.json
           for filename in ./output/*.dat; do
-            mv $filename "../publish/$(basename $filename .dat)-subnets.dat"
+            mv "${filename}" "../publish/$(basename $filename .dat)-subnets.dat"
           done
 
       - name: Generate hashes
         run: |
           cd publish
           for filename in ./*.dat; do
-            sha256sum $filename > "${filename}.sha256sum"
+            sha256sum "${filename}" > "${filename}.sha256sum"
           done
 
       - name: Release and upload assets
@@ -115,4 +121,4 @@ jobs:
         with:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
-          event-type: trigger-workflow
+          event-type: trigger-routing-build

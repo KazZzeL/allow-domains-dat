@@ -16,6 +16,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v4
@@ -64,7 +65,7 @@ jobs:
             cp "input/${category}-domains/list" "input/allow-categories/${category}"
             cp "input/${category}-domains/list" "input/allow-domains/${category}"
           done
-          for category in discord hdrezka meta telegram tiktok twitter youtube; do
+          for category in cloudflare discord hdrezka meta telegram tiktok twitter youtube; do
             mkdir "input/${category}-domains"
             curl -L "${ITDOG_REPO_PATH}/Services/${category}.lst" -o "input/${category}-domains/list"
             cp "input/${category}-domains/list" "input/allow-services/${category}"
@@ -75,8 +76,7 @@ jobs:
         run: |
           cd geosite
           for category in ./input/*/; do
-            go run ./ --datapath=${category}
-            mv dlc.dat "../publish/$(basename $category).dat"
+            go run ./ --datapath="${category}" --outputname="$(basename $category).dat" --outputdir="../publish/"
           done
 
       - name: Setup Go for geoip
@@ -88,9 +88,9 @@ jobs:
         run: |
           cd geoip
           mkdir -p input
-          for domain in discord meta telegram twitter; do
-            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv4/${domain}.lst" -o input/${domain,,}
-            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv6/${domain}.lst" >> input/${domain,,}
+          for domain in cloudflare discord meta telegram twitter; do
+            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv4/${domain}.lst" -o "input/${domain,,}"
+            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv6/${domain}.lst" >> "input/${domain,,}"
           done
 
       - name: Build subnets .dat files

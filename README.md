@@ -11,7 +11,7 @@
 ## Ссылки для скачивания
 ### Универсальные Geosite и Geoip
 
-- **allow-domains.dat** (содержит категории anime, block, geoblock, news, porn, russia-inside, russia-outside, ukraine-inside, discord, hdrezka, meta, telegram, tiktok, twitter, youtube): 
+- **allow-domains.dat** (содержит категории anime, block, geoblock, news, porn, russia-inside, russia-outside, ukraine-inside, cloudflare, discord, hdrezka, meta, telegram, tiktok, twitter, youtube): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat.sha256sum)
 - **allow-categories.dat** (содержит категории anime, block, geoblock, news, porn): 
@@ -20,10 +20,10 @@
 - **allow-countries.dat** (содержит категории russia-inside, russia-outside, ukraine-inside): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat.sha256sum)
-- **allow-services** (содержит категории discord, hdrezka, meta, telegram, tiktok, twitter, youtube)
+- **allow-services** (содержит категории cloudflare, discord, hdrezka, meta, telegram, tiktok, twitter, youtube)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum)
-- **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для discord, meta, telegram, twitter):
+- **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare, discord, meta, telegram, twitter):
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum)
 
@@ -56,6 +56,9 @@
 - **porn-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat.sha256sum)
+- **cloudflare-domains.dat** (содержит категорию list): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-domains.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-domains.dat.sha256sum)
 - **discord-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat.sha256sum)
@@ -89,6 +92,9 @@
 
 ### Geoip по признаку, к какому ресурсу будет совершаться доступ
 
+- **cloudflare-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat.sha256sum)
 - **discord-subnets.dat** (содержит IPv4 и IPv6 подсети для discord): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat.sha256sum)

@@ -11,7 +11,7 @@
 ## Ссылки для скачивания
 ### Универсальные Geosite и Geoip
 
-- **allow-domains.dat** (содержит категории anime, block, geoblock, news, porn, russia-inside, russia-outside, ukraine-inside, cloudflare, discord, hdrezka, meta, telegram, tiktok, twitter, youtube): 
+- **allow-domains.dat** (содержит категории anime, block, geoblock, news, porn, russia-inside, russia-outside, ukraine-inside, cloudflare, discord, google_ai, google_play, hdrezka, hetzner, meta, ovh, telegram, tiktok, twitter, youtube): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat.sha256sum)
 - **allow-categories.dat** (содержит категории anime, block, geoblock, news, porn): 

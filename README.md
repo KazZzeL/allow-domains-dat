@@ -23,7 +23,7 @@
 - **allow-services** (содержит категории cloudflare, discord, hdrezka, meta, telegram, tiktok, twitter, youtube)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum)
-- **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare, discord, meta, telegram, twitter):
+- **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare, discord, hetzner, meta, ovh, telegram, twitter):
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum)
 
@@ -83,10 +83,10 @@
 
 ### Geoip по признаку, откуда будет совершаться доступ
 
-- **ipv4-subnets.dat** (содержит IPv4 подсети для cloudflare, discord, meta, telegram, twitter): 
+- **ipv4-subnets.dat** (содержит IPv4 подсети для cloudflare, discord, hetzner, meta, ovh, telegram, twitter): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat.sha256sum)
-- **ipv6-subnets.dat** (содержит IPv6 подсети для cloudflare, discord, meta, telegram, twitter): 
+- **ipv6-subnets.dat** (содержит IPv6 подсети для cloudflare, discord, hetzner, meta, ovh, telegram, twitter): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat.sha256sum)
 

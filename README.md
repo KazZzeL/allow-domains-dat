@@ -20,7 +20,7 @@
 - **allow-countries.dat** (содержит категории russia-inside, russia-outside, ukraine-inside): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat.sha256sum)
-- **allow-services** (содержит категории cloudflare, discord, hdrezka, meta, telegram, tiktok, twitter, youtube)
+- **allow-services** (содержит категории cloudflare, discord, google_ai, google_play, hdrezka, hetzner, meta, ovh, telegram, tiktok, twitter, youtube)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum)
 - **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare, discord, hetzner, meta, ovh, telegram, twitter):
@@ -62,12 +62,24 @@
 - **discord-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat.sha256sum)
+- **google_ai-domains.dat** (содержит категорию list): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_ai-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_ai-domains.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_ai-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_ai-domains.dat.sha256sum)
+- **google_play-domains.dat** (содержит категорию list): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_play-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_play-domains.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_play-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google_play-domains.dat.sha256sum)
 - **hdrezka-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hdrezka-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hdrezka-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hdrezka-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hdrezka-domains.dat.sha256sum)
+- **hetzner-domains.dat** (содержит категорию list): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-domains.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-domains.dat.sha256sum)
 - **meta-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-domains.dat.sha256sum)
+- **ovh-domains.dat** (содержит категорию list): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-domains.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-domains.dat.sha256sum)
 - **telegram-domains.dat** (содержит категорию list): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-domains.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-domains.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-domains.dat.sha256sum)

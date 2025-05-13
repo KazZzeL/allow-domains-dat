@@ -110,9 +110,15 @@
 - **discord-subnets.dat** (содержит IPv4 и IPv6 подсети для discord): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat.sha256sum)
+- **hetzner-subnets.dat** (содержит IPv4 и IPv6 подсети для hetzner): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-subnets.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-subnets.dat.sha256sum)
 - **meta-subnets.dat** (содержит IPv4 и IPv6 подсети для meta): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-subnets.dat.sha256sum)
+- **ovh-subnets.dat** (содержит IPv4 и IPv6 подсети для ovh): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-subnets.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-subnets.dat.sha256sum)
 - **telegram-subnets.dat** (содержит IPv4 и IPv6 подсети для telegram): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-subnets.dat.sha256sum)

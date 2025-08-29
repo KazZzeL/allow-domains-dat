@@ -23,7 +23,7 @@
 - **allow-services** (содержит категории cloudflare, discord, google_ai, google_play, hdrezka, hetzner, meta, ovh, telegram, tiktok, twitter, youtube)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat.sha256sum)
-- **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare, discord, hetzner, meta, ovh, telegram, twitter):
+- **allow-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare, cloudfront, discord, hetzner, meta, ovh, telegram, twitter):
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat.sha256sum)
 
@@ -95,10 +95,10 @@
 
 ### Geoip по признаку, откуда будет совершаться доступ
 
-- **ipv4-subnets.dat** (содержит IPv4 подсети для cloudflare, discord, hetzner, meta, ovh, telegram, twitter): 
+- **ipv4-subnets.dat** (содержит IPv4 подсети для cloudflare, cloudfront, discord, hetzner, meta, ovh, telegram, twitter): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat.sha256sum)
-- **ipv6-subnets.dat** (содержит IPv6 подсети для cloudflare, discord, hetzner, meta, ovh, telegram, twitter): 
+- **ipv6-subnets.dat** (содержит IPv6 подсети для cloudflare, cloudfront, discord, hetzner, meta, ovh, telegram, twitter): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat.sha256sum)
 
@@ -107,6 +107,9 @@
 - **cloudflare-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudflare): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat.sha256sum)
+- **cloudfront-subnets.dat** (содержит IPv4 и IPv6 подсети для cloudfront): 
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-subnets.dat)
+  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-subnets.dat.sha256sum)
 - **discord-subnets.dat** (содержит IPv4 и IPv6 подсети для discord): 
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat)
   - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat.sha256sum](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat.sha256sum)

@@ -88,7 +88,7 @@ jobs:
         run: |
           cd geoip
           mkdir -p input
-          for domain in cloudflare discord hetzner meta ovh telegram twitter; do
+          for domain in cloudflare cloudfront discord hetzner meta ovh telegram twitter; do
             curl -L "${ITDOG_REPO_PATH}/Subnets/IPv4/${domain}.lst" -o "input/${domain,,}"
             curl -L "${ITDOG_REPO_PATH}/Subnets/IPv6/${domain}.lst" >> "input/${domain,,}"
           done

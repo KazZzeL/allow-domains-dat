@@ -19,19 +19,19 @@ jobs:
 
     steps:
       - name: Checkout codebase
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: publish
 
       - name: Checkout geosite
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: v2fly/domain-list-community
           sparse-checkout: .
           path: geosite
 
       - name: Checkout geoip
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: v2fly/geoip
           path: geoip
@@ -39,19 +39,17 @@ jobs:
       - name: Set environment variables
         run: |
           echo "ITDOG_REPO_PATH=https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main" >> $GITHUB_ENV
-          echo "RELEASE_NAME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
-          echo "TAG_NAME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
         shell: bash
 
       - name: Setup Go for geosite
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: geosite/go.mod
 
       - name: Download domains
         run: |
           cd geosite
-          mkdir -p input/russia-inside input/russia-outside input/ukraine-inside input/allow-domains input/allow-categories input/allow-countries input/allow-services
+          mkdir -p input/{russia-inside,russia-outside,ukraine-inside,allow-domains,allow-categories,allow-countries,allow-services}
           curl -L "${ITDOG_REPO_PATH}/Russia/inside-raw.lst" -o input/russia-inside/list
           curl -L "${ITDOG_REPO_PATH}/Russia/outside-raw.lst" -o input/russia-outside/list
           curl -L "${ITDOG_REPO_PATH}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
@@ -59,13 +57,13 @@ jobs:
             cp "input/${category}/list" "input/allow-countries/${category}"
             cp "input/${category}/list" "input/allow-domains/${category}"
           done
-          for category in anime block geoblock news porn; do
+          for category in anime block geoblock hodca news porn; do
             mkdir "input/${category}-domains"
             curl -L "${ITDOG_REPO_PATH}/Categories/${category}.lst" -o "input/${category}-domains/list"
             cp "input/${category}-domains/list" "input/allow-categories/${category}"
             cp "input/${category}-domains/list" "input/allow-domains/${category}"
           done
-          for category in cloudflare discord google_ai google_play hdrezka hetzner meta ovh telegram tiktok twitter youtube; do
+          for category in cloudflare cloudfront digitalocean discord google_ai google_play hdrezka hetzner meta ovh telegram tiktok twitter youtube; do
             mkdir "input/${category}-domains"
             curl -L "${ITDOG_REPO_PATH}/Services/${category}.lst" -o "input/${category}-domains/list"
             cp "input/${category}-domains/list" "input/allow-services/${category}"
@@ -80,7 +78,7 @@ jobs:
           done
 
       - name: Setup Go for geoip
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: geoip/go.mod
 
@@ -88,7 +86,7 @@ jobs:
         run: |
           cd geoip
           mkdir -p input
-          for domain in cloudflare cloudfront discord hetzner meta ovh telegram twitter; do
+          for domain in cloudflare cloudfront digitalocean discord hetzner meta ovh telegram twitter; do
             curl -L "${ITDOG_REPO_PATH}/Subnets/IPv4/${domain}.lst" -o "input/${domain,,}"
             curl -L "${ITDOG_REPO_PATH}/Subnets/IPv6/${domain}.lst" >> "input/${domain,,}"
           done
@@ -115,6 +113,8 @@ jobs:
           gh release create ${{ env.TAG_NAME }} -t ${{ env.RELEASE_NAME }} ./*.dat ./*.dat.sha256sum
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
+          TAG_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
 
       - name: Trigger Happ routing rebuild
         uses: peter-evans/repository-dispatch@v3

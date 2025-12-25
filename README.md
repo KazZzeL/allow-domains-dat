@@ -167,32 +167,39 @@
       // При подключении внешних файлов
       {
         "domain": ["ext:allow-domains.dat:russia-inside"],
-        "outboundTag": "proxy"
+        "outboundTag": "proxy",
+        "ruleTag": "russia-inside-proxy"
       },
       {
         "domain": ["ext:russia-outside.dat:list"],
-        "outboundTag": "proxy"
+        "outboundTag": "proxy",
+        "ruleTag": "russia-outside-proxy"
       },
       {
         "ip": ["ext:allow-subnets.dat:discord"],
-        "outboundTag": "proxy"
+        "outboundTag": "proxy",
+        "ruleTag": "discord-ips-proxy"
       }
       {
         "ip": ["ext:ipv6-subnets.dat:telegram"],
-        "outboundTag": "proxy"
+        "outboundTag": "proxy",
+        "ruleTag": "telegram-ipv6-proxy"
       }
       // При подключении в ядро
       {
         "domain": ["geosite:russia-inside"],
-        "outboundTag": "proxy"
+        "outboundTag": "proxy",
+        "ruleTag": "russia-inside-proxy"
       },
       {
         "domain": ["geosite:list"],
-        "outboundTag": "proxy"
+        "outboundTag": "proxy",
+        "ruleTag": "domains-proxy"
       },
       {
         "ip": ["geoip:twitter"],
-        "outboundTag": "proxy"
+        "outboundTag": "proxy",
+        "ruleTag": "twitter-ips-proxy"
       }
     ]
   }

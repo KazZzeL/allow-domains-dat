@@ -38,7 +38,7 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo "ITDOG_REPO_PATH=https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main" >> $GITHUB_ENV
+          echo "LISTS_REPO=https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main" >> $GITHUB_ENV
         shell: bash
 
       - name: Setup Go for geosite
@@ -50,22 +50,22 @@ jobs:
         run: |
           cd geosite
           mkdir -p input/{russia-inside,russia-outside,ukraine-inside,allow-domains,allow-categories,allow-countries,allow-services}
-          curl -L "${ITDOG_REPO_PATH}/Russia/inside-raw.lst" -o input/russia-inside/list
-          curl -L "${ITDOG_REPO_PATH}/Russia/outside-raw.lst" -o input/russia-outside/list
-          curl -L "${ITDOG_REPO_PATH}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
+          curl -L "${LISTS_REPO}/Russia/inside-raw.lst" -o input/russia-inside/list
+          curl -L "${LISTS_REPO}/Russia/outside-raw.lst" -o input/russia-outside/list
+          curl -L "${LISTS_REPO}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
           for category in russia-inside russia-outside ukraine-inside; do
             cp "input/${category}/list" "input/allow-countries/${category}"
             cp "input/${category}/list" "input/allow-domains/${category}"
           done
           for category in anime block geoblock hodca news porn; do
             mkdir "input/${category}-domains"
-            curl -L "${ITDOG_REPO_PATH}/Categories/${category}.lst" -o "input/${category}-domains/list"
+            curl -L "${LISTS_REPO}/Categories/${category}.lst" -o "input/${category}-domains/list"
             cp "input/${category}-domains/list" "input/allow-categories/${category}"
             cp "input/${category}-domains/list" "input/allow-domains/${category}"
           done
-          for category in cloudflare cloudfront digitalocean discord google_ai google_play hdrezka hetzner meta ovh telegram tiktok twitter youtube; do
+          for category in cloudflare cloudfront digitalocean discord google_ai google_play hdrezka hetzner meta ovh roblox telegram tiktok twitter youtube; do
             mkdir "input/${category}-domains"
-            curl -L "${ITDOG_REPO_PATH}/Services/${category}.lst" -o "input/${category}-domains/list"
+            curl -L "${LISTS_REPO}/Services/${category}.lst" -o "input/${category}-domains/list"
             cp "input/${category}-domains/list" "input/allow-services/${category}"
             cp "input/${category}-domains/list" "input/allow-domains/${category}"
           done
@@ -87,9 +87,10 @@ jobs:
           cd geoip
           mkdir -p input
           for domain in cloudflare cloudfront digitalocean discord hetzner meta ovh telegram twitter; do
-            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv4/${domain}.lst" -o "input/${domain,,}"
-            curl -L "${ITDOG_REPO_PATH}/Subnets/IPv6/${domain}.lst" >> "input/${domain,,}"
+            curl -L "${LISTS_REPO}/Subnets/IPv4/${domain}.lst" -o "input/${domain,,}"
+            curl -L "${LISTS_REPO}/Subnets/IPv6/${domain}.lst" >> "input/${domain,,}"
           done
+          curl -L "${LISTS_REPO}/Subnets/IPv4/roblox.lst" -o "input/roblox"
 
       - name: Build subnets .dat files
         run: |

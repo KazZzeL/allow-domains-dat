@@ -160,7 +160,7 @@
 
 ## Примеры конфигураций
 
-```json
+```jsonc
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [

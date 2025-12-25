@@ -33,7 +33,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "New release version ($(head -n 1 latest_version.txt))"
+          git commit -am "chore: new release version ($(head -n 1 latest_version.txt))"
           git push
         env:
           GITHUB_TOKEN: ${{ github.token }}

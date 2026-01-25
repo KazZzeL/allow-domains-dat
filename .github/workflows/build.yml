@@ -27,7 +27,11 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: v2fly/domain-list-community
-          sparse-checkout: .
+          sparse-checkout: |
+            main.go
+            go.mod
+            go.sum
+            internal
           path: geosite
 
       - name: Checkout geoip

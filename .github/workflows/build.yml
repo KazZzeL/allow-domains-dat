@@ -122,4 +122,4 @@ jobs:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
-          client-payload: '{"commit_message": "${{ env.RELEASE_MSG }}"}'
+          client-payload: '{"message": "${{ env.RELEASE_MSG }}"}'

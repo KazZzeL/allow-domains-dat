@@ -18,7 +18,7 @@ permissions:
   contents: write
 
 env:
-  COMMIT_MSG: ${{ github.event.head_commit.message || inputs.message }}
+  RELEASE_MSG: ${{ github.event.head_commit.message || inputs.message }}
   LISTS_REPO: https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main
 
 jobs:
@@ -110,7 +110,7 @@ jobs:
       - name: Release and upload assets
         run: |
           cd publish
-          gh release create ${{ env.TAG_NAME }} -t ${{ env.RELEASE_NAME }} ./*.dat
+          gh release create "${{ env.TAG_NAME }}" -t "${{ env.RELEASE_NAME }}" -n "${{ env.RELEASE_MSG }}" ./*.dat
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
@@ -122,4 +122,4 @@ jobs:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
-          client-payload: '{"commit_message": "${{ env.COMMIT_MSG }}"}'
+          client-payload: '{"commit_message": "${{ env.RELEASE_MSG }}"}'

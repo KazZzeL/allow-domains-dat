@@ -9,9 +9,17 @@ on:
   repository_dispatch:
     types: [trigger-dat-build]
   workflow_dispatch:
+    inputs:
+      message:
+        required: true
+        type: string
 
 permissions:
   contents: write
+
+env:
+  COMMIT_MSG: ${{ github.event.head_commit.message || inputs.message }}
+  LISTS_REPO: https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main
 
 jobs:
   build:
@@ -40,11 +48,6 @@ jobs:
           repository: v2fly/geoip
           path: geoip
 
-      - name: Set environment variables
-        run: |
-          echo "LISTS_REPO=https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main" >> $GITHUB_ENV
-        shell: bash
-
       - name: Setup Go for geosite
         uses: actions/setup-go@v6
         with:
@@ -52,26 +55,26 @@ jobs:
 
       - name: Download domains
         run: |
-          cd geosite
-          mkdir -p input/{russia-inside,russia-outside,ukraine-inside,allow-domains,allow-categories,allow-countries,allow-services}
-          curl -L "${LISTS_REPO}/Russia/inside-raw.lst" -o input/russia-inside/list
-          curl -L "${LISTS_REPO}/Russia/outside-raw.lst" -o input/russia-outside/list
-          curl -L "${LISTS_REPO}/Ukraine/inside-raw.lst" -o input/ukraine-inside/list
-          for category in russia-inside russia-outside ukraine-inside; do
-            cp "input/${category}/list" "input/allow-countries/${category}"
-            cp "input/${category}/list" "input/allow-domains/${category}"
+          mkdir -p geosite/input && cd geosite/input
+          mkdir {allow-domains,allow-categories,allow-countries,allow-services}
+          curl -L "${LISTS_REPO}/Russia/inside-raw.lst" -o russia-inside/list --create-dirs
+          curl -L "${LISTS_REPO}/Russia/outside-raw.lst" -o russia-outside/list --create-dirs
+          curl -L "${LISTS_REPO}/Ukraine/inside-raw.lst" -o ukraine-inside/list --create-dirs
+          for country in russia-inside russia-outside ukraine-inside; do
+            cp "${country}/list" "allow-countries/${country}"
+            cp "${country}/list" "allow-domains/${country}"
           done
           for category in anime block geoblock hodca news porn; do
-            mkdir "input/${category}-domains"
-            curl -L "${LISTS_REPO}/Categories/${category}.lst" -o "input/${category}-domains/list"
-            cp "input/${category}-domains/list" "input/allow-categories/${category}"
-            cp "input/${category}-domains/list" "input/allow-domains/${category}"
+            dest="${category}-domains/list"
+            curl -L "${LISTS_REPO}/Categories/${category}.lst" -o "$dest" --create-dirs
+            cp "$dest" "allow-categories/${category}"
+            cp "$dest" "allow-domains/${category}"
           done
-          for category in cloudflare cloudfront digitalocean discord google_ai google_play hdrezka hetzner meta ovh roblox telegram tiktok twitter youtube; do
-            mkdir "input/${category}-domains"
-            curl -L "${LISTS_REPO}/Services/${category}.lst" -o "input/${category}-domains/list"
-            cp "input/${category}-domains/list" "input/allow-services/${category}"
-            cp "input/${category}-domains/list" "input/allow-domains/${category}"
+          for service in cloudflare cloudfront digitalocean discord google_ai google_play hdrezka hetzner meta ovh roblox telegram tiktok twitter youtube; do
+            dest="${service//_/-}-domains/list"
+            curl -L "${LISTS_REPO}/Services/${service}.lst" -o "$dest" --create-dirs
+            cp "$dest" "allow-services/${service//_/-}"
+            cp "$dest" "allow-domains/${service//_/-}"
           done
 
       - name: Build domains .dat files
@@ -88,13 +91,12 @@ jobs:
 
       - name: Download subnets
         run: |
-          cd geoip
-          mkdir -p input
+          mkdir -p geoip/input && cd geoip/input
           for domain in cloudflare cloudfront digitalocean discord hetzner meta ovh telegram twitter; do
-            curl -L "${LISTS_REPO}/Subnets/IPv4/${domain}.lst" -o "input/${domain,,}"
-            curl -L "${LISTS_REPO}/Subnets/IPv6/${domain}.lst" >> "input/${domain,,}"
+            curl -L "${LISTS_REPO}/Subnets/IPv4/${domain}.lst" -o "${domain}"
+            curl -L "${LISTS_REPO}/Subnets/IPv6/${domain}.lst" >> "${domain}"
           done
-          curl -L "${LISTS_REPO}/Subnets/IPv4/roblox.lst" -o "input/roblox"
+          curl -L "${LISTS_REPO}/Subnets/IPv4/roblox.lst" -o "roblox"
 
       - name: Build subnets .dat files
         run: |
@@ -105,17 +107,10 @@ jobs:
             mv "${filename}" "../publish/$(basename $filename .dat)-subnets.dat"
           done
 
-      - name: Generate hashes
-        run: |
-          cd publish
-          for filename in ./*.dat; do
-            sha256sum "${filename}" > "${filename}.sha256sum"
-          done
-
       - name: Release and upload assets
         run: |
           cd publish
-          gh release create ${{ env.TAG_NAME }} -t ${{ env.RELEASE_NAME }} ./*.dat ./*.dat.sha256sum
+          gh release create ${{ env.TAG_NAME }} -t ${{ env.RELEASE_NAME }} ./*.dat
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
@@ -127,3 +122,4 @@ jobs:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
+          client-payload: '{"commit_message": "${{ env.COMMIT_MSG }}"}'

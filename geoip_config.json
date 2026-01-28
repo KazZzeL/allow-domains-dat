@@ -30,8 +30,8 @@
       "type": "v2rayGeoIPDat",
       "action": "output",
       "args": {
-        "outputDir": "./output",
         "excludedList": ["roblox"],
+        "outputDir": "./output",
         "outputName": "ipv6.dat",
         "onlyIPType": "ipv6"
       }

@@ -18,8 +18,8 @@ permissions:
   contents: write
 
 env:
-  LISTS_REPO: https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main
-  RELEASE_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
+  LISTS_REPO: "https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main"
+  RELEASE_NAME: "$(date +'%Y-%m-%d_%H-%M-%S')"
 
 jobs:
   build:

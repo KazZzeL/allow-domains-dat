@@ -18,7 +18,11 @@ permissions:
   contents: write
 
 env:
-  RELEASE_MSG: ${{ github.event.client_payload.message || inputs.message || github.event.head_commit.message }}
+  RELEASE_MSG: ${{ 
+    inputs.message || 
+    github.event.head_commit.message || 
+    format('new lists version: {0}', github.event.client_payload.version)
+  }}
   LISTS_REPO: https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main
 
 jobs:

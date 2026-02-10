@@ -30,7 +30,7 @@ jobs:
           if [ -z "`git status --porcelain`" ]; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            echo -e "changed=true\nmessage=chore: new release version ($(head -n 1 latest_version.txt))" >> $GITHUB_OUTPUT
+            echo -e "changed=true\nvalue=$(head -n 1 latest_version.txt)" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit changed release version
@@ -38,7 +38,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "${{ steps.version.outputs.message }}"
+          git commit -am "chore: new release version (${{ steps.version.outputs.value }})"
           git push
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -48,4 +48,4 @@ jobs:
         uses: peter-evans/repository-dispatch@v4
         with:
           event-type: trigger-dat-build
-          client-payload: '{"message": "${{ steps.version.outputs.message }}"}'
+          client-payload: '{"version": "${{ steps.version.outputs.value }}"}'

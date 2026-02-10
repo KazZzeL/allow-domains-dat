@@ -18,11 +18,8 @@ permissions:
   contents: write
 
 env:
-  RELEASE_MSG: "${{
-    inputs.message ||
-    github.event.head_commit.message ||
-    format('new lists version: {0}', github.event.client_payload.version) }}"
   LISTS_REPO: https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main
+  RELEASE_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
 
 jobs:
   build:
@@ -113,16 +110,19 @@ jobs:
       - name: Release and upload assets
         run: |
           cd publish
-          gh release create "${{ env.TAG_NAME }}" -t "${{ env.RELEASE_NAME }}" -n "${{ env.RELEASE_MSG }}" ./*.dat
+          gh release create "${{ env.RELEASE_NAME }}" -t "${{ env.RELEASE_NAME }}" -n "${{ env.RELEASE_MSG }}" ./*.dat
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
-          TAG_NAME: $(date +'%Y-%m-%d_%H-%M-%S')
-
+          RELEASE_MSG: "${{
+            inputs.message ||
+            github.event.head_commit.message ||
+            format('new lists version: {0}', github.event.client_payload.version) }}"
+          
       - name: Trigger Happ routing rebuild
         uses: peter-evans/repository-dispatch@v4
         with:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
-          client-payload: '{"message": "${{ env.RELEASE_MSG }}"}'
+          client-payload: '{"message": "new geofiles version: ${{ env.RELEASE_NAME }}"}'
+          

@@ -57,24 +57,24 @@ jobs:
         run: |
           mkdir -p geosite/input && cd geosite/input
           mkdir {allow-domains,allow-categories,allow-countries,allow-services}
-          curl -L "${LISTS_REPO}/Russia/inside-raw.lst" -o russia-inside/list --create-dirs
-          curl -L "${LISTS_REPO}/Russia/outside-raw.lst" -o russia-outside/list --create-dirs
-          curl -L "${LISTS_REPO}/Ukraine/inside-raw.lst" -o ukraine-inside/list --create-dirs
+          curl -fsSL "${LISTS_REPO}/Russia/inside-raw.lst" -o russia-inside/list --create-dirs
+          curl -fsSL "${LISTS_REPO}/Russia/outside-raw.lst" -o russia-outside/list --create-dirs
+          curl -fsSL "${LISTS_REPO}/Ukraine/inside-raw.lst" -o ukraine-inside/list --create-dirs
           for country in russia-inside russia-outside ukraine-inside; do
-            cp "${country}/list" "allow-countries/${country}"
-            cp "${country}/list" "allow-domains/${country}"
+            ln "${country}/list" "allow-countries/${country}"
+            ln "${country}/list" "allow-domains/${country}"
           done
           for category in anime block geoblock hodca news porn; do
             dest="${category}-domains/list"
-            curl -L "${LISTS_REPO}/Categories/${category}.lst" -o "$dest" --create-dirs
-            cp "$dest" "allow-categories/${category}"
-            cp "$dest" "allow-domains/${category}"
+            curl -fsSL "${LISTS_REPO}/Categories/${category}.lst" -o "$dest" --create-dirs
+            ln "$dest" "allow-categories/${category}"
+            ln "$dest" "allow-domains/${category}"
           done
           for service in cloudflare cloudfront digitalocean discord google_ai google_play hdrezka hetzner meta ovh roblox telegram tiktok twitter youtube; do
             dest="${service//_/-}-domains/list"
-            curl -L "${LISTS_REPO}/Services/${service}.lst" -o "$dest" --create-dirs
-            cp "$dest" "allow-services/${service//_/-}"
-            cp "$dest" "allow-domains/${service//_/-}"
+            curl -fsSL "${LISTS_REPO}/Services/${service}.lst" -o "$dest" --create-dirs
+            ln "$dest" "allow-services/${service//_/-}"
+            ln "$dest" "allow-domains/${service//_/-}"
           done
 
       - name: Build domains .dat files
@@ -94,10 +94,10 @@ jobs:
         run: |
           mkdir -p geoip/input && cd geoip/input
           for domain in cloudflare cloudfront digitalocean discord hetzner meta ovh telegram twitter; do
-            curl -L "${LISTS_REPO}/Subnets/IPv4/${domain}.lst" -o "${domain}"
-            curl -L "${LISTS_REPO}/Subnets/IPv6/${domain}.lst" >> "${domain}"
+            curl -fsSL "${LISTS_REPO}/Subnets/IPv4/${domain}.lst" -o "${domain}"
+            curl -fsSL "${LISTS_REPO}/Subnets/IPv6/${domain}.lst" >> "${domain}"
           done
-          curl -L "${LISTS_REPO}/Subnets/IPv4/roblox.lst" -o "roblox"
+          curl -fsSL "${LISTS_REPO}/Subnets/IPv4/roblox.lst" -o "roblox"
 
       - name: Build subnets .dat files
         run: |

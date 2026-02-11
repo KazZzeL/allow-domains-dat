@@ -19,7 +19,7 @@ jobs:
 
       - name: Fetch latest release version
         run: |
-          latest_version=$(curl -sL "https://api.github.com/repos/itdoginfo/allow-domains/releases/latest" | jq -r ".tag_name")
+          latest_version=$(curl -fsSL "https://api.github.com/repos/itdoginfo/allow-domains/releases/latest" | jq -r ".tag_name")
           if [[ -n $latest_version && $latest_version != "null" ]]; then
             echo "$latest_version" > latest_version.txt
           fi

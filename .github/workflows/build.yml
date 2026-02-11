@@ -126,5 +126,5 @@ jobs:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
-          client-payload: '{"version": "${{ steps.release.output.version }}"}'
+          client-payload: '{"version": "${{ steps.release.outputs.version }}"}'
           

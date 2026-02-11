@@ -38,7 +38,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "chore: new release version (${{ steps.version.outputs.value }})"
+          git commit -am "chore: new lists release (${{ steps.version.outputs.value }})"
           git push
         env:
           GITHUB_TOKEN: ${{ github.token }}

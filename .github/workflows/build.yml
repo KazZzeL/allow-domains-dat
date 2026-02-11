@@ -51,6 +51,7 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version-file: geosite/go.mod
+          cache-dependency-path: geosite/go.sum
 
       - name: Download domains
         run: |
@@ -87,6 +88,7 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version-file: geoip/go.mod
+          cache-dependency-path: geoip/go.sum
 
       - name: Download subnets
         run: |
@@ -118,7 +120,7 @@ jobs:
           RELEASE_MSG: "${{
             inputs.message ||
             github.event.head_commit.message ||
-            format('new lists version: {0}', github.event.client_payload.version) }}"
+            format('new lists release: {0}', github.event.client_payload.version) }}"
           
       - name: Trigger Happ routing rebuild
         uses: peter-evans/repository-dispatch@v4

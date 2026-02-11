@@ -19,7 +19,6 @@ permissions:
 
 env:
   LISTS_REPO: "https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main"
-  RELEASE_NAME: "$(date +'%Y-%m-%d_%H-%M-%S')"
 
 jobs:
   build:
@@ -108,9 +107,12 @@ jobs:
           done
 
       - name: Release and upload assets
+        id: release
         run: |
           cd publish
-          gh release create "${{ env.RELEASE_NAME }}" -t "${{ env.RELEASE_NAME }}" -n "${{ env.RELEASE_MSG }}" ./*.dat
+          RELEASE_NAME="$(date +'%Y-%m-%d_%H-%M-%S')"
+          gh release create "$RELEASE_NAME" -t "$RELEASE_NAME" -n "${{ env.RELEASE_MSG }}" ./*.dat
+          echo "version=$RELEASE_NAME" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_MSG: "${{
@@ -124,5 +126,5 @@ jobs:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
-          client-payload: '{"message": "new geofiles version: ${{ env.RELEASE_NAME }}"}'
+          client-payload: '{"version": "${{ steps.release.output.version }}"}'
           

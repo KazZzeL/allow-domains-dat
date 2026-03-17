@@ -61,16 +61,16 @@ jobs:
           curl -fsSL "${LISTS_REPO}/Russia/outside-raw.lst" -o russia-outside/list --create-dirs
           curl -fsSL "${LISTS_REPO}/Ukraine/inside-raw.lst" -o ukraine-inside/list --create-dirs
           for country in russia-inside russia-outside ukraine-inside; do
-            ln "${country}/list" "allow-countries/${country}"
-            ln "${country}/list" "allow-domains/${country}"
+            ln "${country}/list" "allow-countries/${country//_/-}"
+            ln "${country}/list" "allow-domains/${country//_/-}"
           done
           for category in anime block geoblock hodca news porn; do
-            dest="${category}-domains/list"
+            dest="${category//_/-}-domains/list"
             curl -fsSL "${LISTS_REPO}/Categories/${category}.lst" -o "$dest" --create-dirs
-            ln "$dest" "allow-categories/${category}"
-            ln "$dest" "allow-domains/${category}"
+            ln "$dest" "allow-categories/${category//_/-}"
+            ln "$dest" "allow-domains/${category//_/-}"
           done
-          for service in cloudflare cloudfront digitalocean discord google_ai google_play hdrezka hetzner meta ovh roblox telegram tiktok twitter youtube; do
+          for service in cloudflare cloudfront digitalocean discord google_ai google_meet google_play hdrezka hetzner meta ovh roblox telegram tiktok twitter youtube; do
             dest="${service//_/-}-domains/list"
             curl -fsSL "${LISTS_REPO}/Services/${service}.lst" -o "$dest" --create-dirs
             ln "$dest" "allow-services/${service//_/-}"
@@ -93,9 +93,9 @@ jobs:
       - name: Download subnets
         run: |
           mkdir -p geoip/input && cd geoip/input
-          for domain in cloudflare cloudfront digitalocean discord hetzner meta ovh telegram twitter; do
-            curl -fsSL "${LISTS_REPO}/Subnets/IPv4/${domain}.lst" -o "${domain}"
-            curl -fsSL "${LISTS_REPO}/Subnets/IPv6/${domain}.lst" >> "${domain}"
+          for domain in cloudflare cloudfront digitalocean discord google_meet hetzner meta ovh telegram twitter; do
+            curl -fsSL "${LISTS_REPO}/Subnets/IPv4/${domain}.lst" -o "${domain//_/-}"
+            curl -fsSL "${LISTS_REPO}/Subnets/IPv6/${domain}.lst" >> "${domain//_/-}"
           done
           curl -fsSL "${LISTS_REPO}/Subnets/IPv4/roblox.lst" -o "roblox"
 

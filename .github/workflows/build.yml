@@ -63,10 +63,11 @@ jobs:
             ["ukraine-inside"]="Ukraine/inside-raw"
           )
           for country in "${!countries[@]}"; do
-            dest="${country//_/-}/list"
+            name="${country//_/-}"
+            dest="$name/list"
             curl -fsSL "${LISTS_REPO}/${countries[$country]}.lst" -o "$dest" --create-dirs
-            ln "$dest" "allow-countries/${country//_/-}"
-            ln "$dest" "allow-domains/${country//_/-}"
+            ln "$dest" "allow-countries/$name"
+            ln "$dest" "allow-domains/$name"
           done
           declare -a categories=(
             "anime"
@@ -77,10 +78,11 @@ jobs:
             "porn"
           )
           for category in "${categories[@]}"; do
-            dest="${category//_/-}-domains/list"
+            name="${category//_/-}"
+            dest="${name}-domains/list"
             curl -fsSL "${LISTS_REPO}/Categories/${category}.lst" -o "$dest" --create-dirs
-            ln "$dest" "allow-categories/${category//_/-}"
-            ln "$dest" "allow-domains/${category//_/-}"
+            ln "$dest" "allow-categories/$name"
+            ln "$dest" "allow-domains/$name"
           done
           declare -a services=(
             "cloudflare"
@@ -101,10 +103,11 @@ jobs:
             "youtube"
           )
           for service in "${services[@]}"; do
-            dest="${service//_/-}-domains/list"
+            name="${service//_/-}"
+            dest="${name}-domains/list"
             curl -fsSL "${LISTS_REPO}/Services/${service}.lst" -o "$dest" --create-dirs
-            ln "$dest" "allow-services/${service//_/-}"
-            ln "$dest" "allow-domains/${service//_/-}"
+            ln "$dest" "allow-services/$name"
+            ln "$dest" "allow-domains/$name"
           done
 
       - name: Build domains .dat files

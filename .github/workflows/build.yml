@@ -148,7 +148,7 @@ jobs:
           go-version-file: geoip/go.mod
           cache-dependency-path: geoip/go.sum
 
-      - name: Download subnets
+      - name: Prepare subnets lists
         run: |
           mkdir -p geoip/input && cd geoip/input
           declare -a subnets=(
@@ -168,7 +168,7 @@ jobs:
             ln "../../lists/Subnets/IPv4/${subnet}.lst" "$dst"
             cat "../../lists/Subnets/IPv6/${subnet}.lst" >> "$dst"
           done
-          ln "/lists/Subnets/IPv4/roblox.lst" "roblox"
+          ln "../../lists/Subnets/IPv4/roblox.lst" "roblox"
 
       - name: Build subnets .dat files
         run: |

@@ -83,7 +83,7 @@ jobs:
           )
           for country in "${!countries[@]}"; do
             name="${country//_/-}"
-            src="/lists/${country}.lst"
+            src="/lists/${countries[$country]}.lst"
             dst="$name"
             mkdir "$dst"
             ln "$src" "${dst}/list"

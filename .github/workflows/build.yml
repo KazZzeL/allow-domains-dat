@@ -100,7 +100,7 @@ jobs:
           )
           for category in "${categories[@]}"; do
             name="${category//_/-}"
-            src="../../lists/Categories/${category}.lst
+            src="../../lists/Categories/${category}.lst"
             dst="${name}-domains"
             mkdir "$dst"
             ln "$src" "${dst}/list"

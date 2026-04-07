@@ -76,6 +76,7 @@ jobs:
         run: |
           mkdir -p geosite/input && cd geosite/input
           mkdir {allow-domains,allow-categories,allow-countries,allow-services}
+          ls /lists/
           declare -A countries=(
             ["russia-inside"]="Russia/inside-raw"
             ["russia-outside"]="Russia/outside-raw"

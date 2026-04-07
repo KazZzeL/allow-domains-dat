@@ -83,11 +83,12 @@ jobs:
           )
           for country in "${!countries[@]}"; do
             name="${country//_/-}"
-            mkdir "$name"
-            dest="$name/list"
-            ln "/lists/${country}.lst" "$dest"
-            ln "$dest" "allow-countries/$name"
-            ln "$dest" "allow-domains/$name"
+            src="/lists/${country}.lst"
+            dst="$name"
+            mkdir "$dst"
+            ln "$src" "${dst}/list"
+            ln "$src" "allow-countries/${name}"
+            ln "$src" "allow-domains/${name}"
           done
           declare -a categories=(
             "anime"
@@ -99,11 +100,12 @@ jobs:
           )
           for category in "${categories[@]}"; do
             name="${category//_/-}"
-            mkdir "$name"
-            dest="${name}-domains/list"
-            ln "/lists/Categories/${category}.lst" "$dest"
-            ln "$dest" "allow-categories/$name"
-            ln "$dest" "allow-domains/$name"
+            src="/lists/Categories/${category}.lst
+            dst="${name}-domains"
+            mkdir "$dst"
+            ln "$src" "${dst}/list"
+            ln "$src" "allow-categories/${name}"
+            ln "$src" "allow-domains/${name}"
           done
           declare -a services=(
             "cloudflare"
@@ -125,11 +127,12 @@ jobs:
           )
           for service in "${services[@]}"; do
             name="${service//_/-}"
-            mkdir "$name"
-            dest="${name}-domains/list"
-            ln "/lists/Services/${service}.lst" "$dest"
-            ln "$dest" "allow-services/$name"
-            ln "$dest" "allow-domains/$name"
+            src="/lists/Services/${service}.lst"
+            dst="${name}-domains"
+            mkdir "$dst"
+            ln "$src" "${dst}/list"
+            ln "$src" "allow-services/${name}"
+            ln "$src" "allow-domains/${name}"
           done
 
       - name: Build domains .dat files
@@ -161,9 +164,9 @@ jobs:
             "twitter"
           )
           for subnet in "${subnets[@]}"; do
-            dest="${subnet//_/-}"
-            ln "/lists/Subnets/IPv4/${subnet}.lst" "$dest"
-            cat "/lists/Subnets/IPv6/${subnet}.lst" >> "$dest"
+            dst="${subnet//_/-}"
+            ln "/lists/Subnets/IPv4/${subnet}.lst" "$dst"
+            cat "/lists/Subnets/IPv6/${subnet}.lst" >> "$dst"
           done
           ln "/lists/Subnets/IPv4/roblox.lst" "roblox"
 

@@ -11,6 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       message:
+        description: 'Release message'
         required: true
         type: string
 
@@ -25,12 +26,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout codebase
+      - name: Checkout config
         uses: actions/checkout@v6
         with:
+          sparse-checkout: |
+            geoip_config.json
+          sparse-checkout-cone-mode: false
           path: publish
 
-      - name: Checkout geosite
+      - name: Checkout lists
+        uses: actions/checkout@v6
+        with:
+          repository: itdoginfo/allow-domains
+          sparse-checkout: |
+            Russia/inside-raw.lst
+            Russia/outside-raw.lst
+            Ukraine/inside-raw.lst
+            Categories
+            Services
+            Subnets
+          sparse-checkout-cone-mode: false
+          path: lists
+
+      - name: Checkout geosite builder
         uses: actions/checkout@v6
         with:
           repository: v2fly/domain-list-community
@@ -39,21 +57,22 @@ jobs:
             go.mod
             go.sum
             internal
+          sparse-checkout-cone-mode: false
           path: geosite
 
-      - name: Checkout geoip
+      - name: Checkout geoip builder
         uses: actions/checkout@v6
         with:
           repository: v2fly/geoip
           path: geoip
 
-      - name: Setup Go for geosite
+      - name: Setup Go for geosite builder
         uses: actions/setup-go@v6
         with:
           go-version-file: geosite/go.mod
           cache-dependency-path: geosite/go.sum
 
-      - name: Download domains
+      - name: Prepare domains lists
         run: |
           mkdir -p geosite/input && cd geosite/input
           mkdir {allow-domains,allow-categories,allow-countries,allow-services}
@@ -64,8 +83,9 @@ jobs:
           )
           for country in "${!countries[@]}"; do
             name="${country//_/-}"
+            mkdir "$name"
             dest="$name/list"
-            curl -fsSL "${LISTS_REPO}/${countries[$country]}.lst" -o "$dest" --create-dirs
+            ln "/lists/${country}.lst" "$dest"
             ln "$dest" "allow-countries/$name"
             ln "$dest" "allow-domains/$name"
           done
@@ -79,8 +99,9 @@ jobs:
           )
           for category in "${categories[@]}"; do
             name="${category//_/-}"
+            mkdir "$name"
             dest="${name}-domains/list"
-            curl -fsSL "${LISTS_REPO}/Categories/${category}.lst" -o "$dest" --create-dirs
+            ln "/lists/Categories/${category}.lst" "$dest"
             ln "$dest" "allow-categories/$name"
             ln "$dest" "allow-domains/$name"
           done
@@ -104,8 +125,9 @@ jobs:
           )
           for service in "${services[@]}"; do
             name="${service//_/-}"
+            mkdir "$name"
             dest="${name}-domains/list"
-            curl -fsSL "${LISTS_REPO}/Services/${service}.lst" -o "$dest" --create-dirs
+            ln "/lists/Services/${service}.lst" "$dest"
             ln "$dest" "allow-services/$name"
             ln "$dest" "allow-domains/$name"
           done
@@ -140,10 +162,10 @@ jobs:
           )
           for subnet in "${subnets[@]}"; do
             dest="${subnet//_/-}"
-            curl -fsSL "${LISTS_REPO}/Subnets/IPv4/${subnet}.lst" -o "$dest"
-            curl -fsSL "${LISTS_REPO}/Subnets/IPv6/${subnet}.lst" >> "$dest"
+            ln "/lists/Subnets/IPv4/${subnet}.lst" "$dest"
+            cat "/lists/Subnets/IPv6/${subnet}.lst" >> "$dest"
           done
-          curl -fsSL "${LISTS_REPO}/Subnets/IPv4/roblox.lst" -o "roblox"
+          ln "/lists/Subnets/IPv4/roblox.lst" "roblox"
 
       - name: Build subnets .dat files
         run: |

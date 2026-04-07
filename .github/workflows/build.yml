@@ -76,7 +76,6 @@ jobs:
         run: |
           mkdir -p geosite/input && cd geosite/input
           mkdir {allow-domains,allow-categories,allow-countries,allow-services}
-          ls /lists/
           declare -A countries=(
             ["russia-inside"]="Russia/inside-raw"
             ["russia-outside"]="Russia/outside-raw"
@@ -84,7 +83,7 @@ jobs:
           )
           for country in "${!countries[@]}"; do
             name="${country//_/-}"
-            src="/lists/${countries[$country]}.lst"
+            src="../../lists/${countries[$country]}.lst"
             dst="$name"
             mkdir "$dst"
             ln "$src" "${dst}/list"
@@ -101,7 +100,7 @@ jobs:
           )
           for category in "${categories[@]}"; do
             name="${category//_/-}"
-            src="/lists/Categories/${category}.lst
+            src="../../lists/Categories/${category}.lst
             dst="${name}-domains"
             mkdir "$dst"
             ln "$src" "${dst}/list"
@@ -128,7 +127,7 @@ jobs:
           )
           for service in "${services[@]}"; do
             name="${service//_/-}"
-            src="/lists/Services/${service}.lst"
+            src="../../lists/Services/${service}.lst"
             dst="${name}-domains"
             mkdir "$dst"
             ln "$src" "${dst}/list"
@@ -166,8 +165,8 @@ jobs:
           )
           for subnet in "${subnets[@]}"; do
             dst="${subnet//_/-}"
-            ln "/lists/Subnets/IPv4/${subnet}.lst" "$dst"
-            cat "/lists/Subnets/IPv6/${subnet}.lst" >> "$dst"
+            ln "../../lists/Subnets/IPv4/${subnet}.lst" "$dst"
+            cat "../../lists/Subnets/IPv6/${subnet}.lst" >> "$dst"
           done
           ln "/lists/Subnets/IPv4/roblox.lst" "roblox"
 

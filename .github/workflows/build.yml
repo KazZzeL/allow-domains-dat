@@ -81,6 +81,7 @@ jobs:
             for lst in ./"$group"/*; do
               [ -f "$lst" ] || continue
               list="$(basename "$lst" .lst | tr '_' '-')"
+              [ "$list == "${list,,}" ] || continue
               dest="${input}/${list}${groups[$group]}"
               mkdir -p "$dest"
               ln "$lst" "${dest}/list"

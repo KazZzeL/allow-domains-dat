@@ -92,7 +92,9 @@ jobs:
           mkdir -p "$ip_input"
           for lst in ./Subnets/*/*; do
             [ -f "$lst" ] || continue
-            cat "$lst" >> "${ip_input}/$(basename "$lst" .lst | tr '_' '-')"
+            list="$(basename "$lst" .lst | tr '_' '-')"
+            [ "$list == "${list,,}" ] || continue
+            cat "$lst" >> "${ip_input}/${list}"
           done
 
       - name: Setup Go for geosite builder

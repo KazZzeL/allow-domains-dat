@@ -66,7 +66,7 @@ jobs:
       - name: Prepare lists
         run: |
           cd lists
-          mkdir Countries
+          mkdir -p Countries
           ln "Russia/inside-raw.lst" "Countries/russia-inside.lst"
           ln "Russia/outside-raw.lst" "Countries/russia-outside.lst"
           ln "Ukraine/inside-raw.lst" "Countries/ukraine-inside.lst"
@@ -78,19 +78,21 @@ jobs:
             ["Services"]="-domains"
           )
           for group in "${!groups[@]}"; do
-            for lst in "./${group}/*"; do
+            for lst in ./"$group"/*; do
+              [ -f "$lst" ] || continue
               list="$(basename "$lst" .lst | tr '_' '-')"
               dest="${input}/${list}${groups[$group]}"
-              mkdir "$dest"
+              mkdir -p "$dest"
               ln "$lst" "${dest}/list"
               ln "$lst" "${input}/allow-${group,,}/${list}"
               ln "$lst" "${input}/allow-domains/${list}"
             done
           done
-          input="../geoip/input"
-          mkdir "$input"
+          ip_input="../geoip/input"
+          mkdir -p "$ip_input"
           for lst in ./Subnets/*/*; do
-            cat "$lst" >> "${input}/$(basename "$lst" .lst | tr '_' '-')"
+            [ -f "$lst" ] || continue
+            cat "$lst" >> "${ip_input}/$(basename "$lst" .lst | tr '_' '-')"
           done
 
       - name: Setup Go for geosite builder
@@ -105,7 +107,7 @@ jobs:
           for category in ./input/*/; do
             go run ./ \
               --datapath="$category" \
-              --outputname="$(basename $category).dat" \
+              --outputname="$(basename "$category").dat" \
               --outputdir="../publish/"
           done
 
@@ -120,8 +122,9 @@ jobs:
           cd geoip
           mkdir output
           go run ./ -c "../publish/geoip_config.json"
-          for filename in ./output/*.dat; do
-            mv "$filename" "../publish/$(basename "$filename" .dat)-subnets.dat"
+          for dat in ./output/*.dat; do
+            [ -f "$dat" ] || continue
+            ln "$dat" "../publish/$(basename "$dat" .dat)-subnets.dat"
           done
 
       - name: Release and upload assets

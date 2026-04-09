@@ -70,27 +70,27 @@ jobs:
           ln "Russia/inside-raw.lst" "Countries/russia-inside.lst"
           ln "Russia/outside-raw.lst" "Countries/russia-outside.lst"
           ln "Ukraine/inside-raw.lst" "Countries/ukraine-inside.lst"
-          input=“../geosite/input”
-          mkdir -p “${input}”/{allow-domains,allow-categories,allow-countries,allow-services}
+          input="../geosite/input"
+          mkdir -p "${input}"/{allow-domains,allow-categories,allow-countries,allow-services}
           declare -A groups=(
             ["Categories"]="-domains"
             ["Countries"]=""
-            ["Services"]="-domains”
+            ["Services"]="-domains"
           )
           for group in "${!groups[@]}"; do
-            for lst in “./${group}/*”; do
-              list=“$(basename “$lst” .lst | tr ‘_’ ‘-‘)”
-              dest=“${input}/${list}${groups[$group]}”
-              mkdir “$dest”
+            for lst in "./${group}/*"; do
+              list="$(basename "$lst" .lst | tr '_' '-')"
+              dest="${input}/${list}${groups[$group]}"
+              mkdir "$dest"
               ln "$lst" "${dest}/list"
               ln "$lst" "${input}/allow-${group,,}/${list}"
               ln "$lst" "${input}/allow-domains/${list}"
             done
           done
-          input=“../geoip/input”
-          mkdir -p “$input”
+          input="../geoip/input"
+          mkdir "$input"
           for lst in ./Subnets/*/*; do
-            cat "$lst" >> "${input}/$(basename “$lst” .lst | tr ‘_’ ‘-‘)”
+            cat "$lst" >> "${input}/$(basename "$lst" .lst | tr '_' '-')"
           done
 
       - name: Setup Go for geosite builder
@@ -103,7 +103,10 @@ jobs:
         run: |
           cd geosite
           for category in ./input/*/; do
-            go run ./ --datapath="${category}" --outputname="$(basename $category).dat" --outputdir="../publish/"
+            go run ./ \
+              --datapath="$category" \
+              --outputname="$(basename $category).dat" \
+              --outputdir="../publish/"
           done
 
       - name: Setup Go for geoip builder
@@ -115,10 +118,10 @@ jobs:
       - name: Build subnets .dat files
         run: |
           cd geoip
-          mkdir -p output
-          go run ./ -c ../publish/geoip_config.json
+          mkdir output
+          go run ./ -c "../publish/geoip_config.json"
           for filename in ./output/*.dat; do
-            mv "${filename}" "../publish/$(basename $filename .dat)-subnets.dat"
+            mv "$filename" "../publish/$(basename "$filename" .dat)-subnets.dat"
           done
 
       - name: Release and upload assets

@@ -18,9 +18,6 @@ on:
 permissions:
   contents: write
 
-env:
-  LISTS_REPO: "https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -66,74 +63,41 @@ jobs:
           repository: v2fly/geoip
           path: geoip
 
+      - name: Prepare lists
+        run: |
+          cd lists
+          mkdir Countries
+          ln "Russia/inside-raw.lst" "Countries/russia-inside.lst"
+          ln "Russia/outside-raw.lst" "Countries/russia-outside.lst"
+          ln "Ukraine/inside-raw.lst" "Countries/ukraine-inside.lst"
+          input=“../geosite/input”
+          mkdir -p “${input}”/{allow-domains,allow-categories,allow-countries,allow-services}
+          declare -A groups=(
+            ["Categories"]="-domains"
+            ["Countries"]=""
+            ["Services"]="-domains”
+          )
+          for group in "${!groups[@]}"; do
+            for lst in “./${group}/*”; do
+              list=“$(basename “$lst” .lst | tr ‘_’ ‘-‘)”
+              dest=“${input}/${list}${groups[$group]}”
+              mkdir “$dest”
+              ln "$lst" "${dest}/list"
+              ln "$lst" "${input}/allow-${group,,}/${list}"
+              ln "$lst" "${input}/allow-domains/${list}"
+            done
+          done
+          input=“../geoip/input”
+          mkdir -p “$input”
+          for lst in ./Subnets/*/*; do
+            cat "$lst" >> "${input}/$(basename “$lst” .lst | tr ‘_’ ‘-‘)”
+          done
+
       - name: Setup Go for geosite builder
         uses: actions/setup-go@v6
         with:
           go-version-file: geosite/go.mod
           cache-dependency-path: geosite/go.sum
-
-      - name: Prepare domains lists
-        run: |
-          mkdir -p geosite/input && cd geosite/input
-          mkdir {allow-domains,allow-categories,allow-countries,allow-services}
-          declare -A countries=(
-            ["russia-inside"]="Russia/inside-raw"
-            ["russia-outside"]="Russia/outside-raw"
-            ["ukraine-inside"]="Ukraine/inside-raw"
-          )
-          for country in "${!countries[@]}"; do
-            name="${country//_/-}"
-            src="../../lists/${countries[$country]}.lst"
-            dst="$name"
-            mkdir "$dst"
-            ln "$src" "${dst}/list"
-            ln "$src" "allow-countries/${name}"
-            ln "$src" "allow-domains/${name}"
-          done
-          declare -a categories=(
-            "anime"
-            "block"
-            "geoblock"
-            "hodca"
-            "news"
-            "porn"
-          )
-          for category in "${categories[@]}"; do
-            name="${category//_/-}"
-            src="../../lists/Categories/${category}.lst"
-            dst="${name}-domains"
-            mkdir "$dst"
-            ln "$src" "${dst}/list"
-            ln "$src" "allow-categories/${name}"
-            ln "$src" "allow-domains/${name}"
-          done
-          declare -a services=(
-            "cloudflare"
-            "cloudfront"
-            "digitalocean"
-            "discord"
-            "google_ai"
-            "google_meet"
-            "google_play"
-            "hdrezka"
-            "hetzner"
-            "meta"
-            "ovh"
-            "roblox"
-            "telegram"
-            "tiktok"
-            "twitter"
-            "youtube"
-          )
-          for service in "${services[@]}"; do
-            name="${service//_/-}"
-            src="../../lists/Services/${service}.lst"
-            dst="${name}-domains"
-            mkdir "$dst"
-            ln "$src" "${dst}/list"
-            ln "$src" "allow-services/${name}"
-            ln "$src" "allow-domains/${name}"
-          done
 
       - name: Build domains .dat files
         run: |
@@ -142,33 +106,11 @@ jobs:
             go run ./ --datapath="${category}" --outputname="$(basename $category).dat" --outputdir="../publish/"
           done
 
-      - name: Setup Go for geoip
+      - name: Setup Go for geoip builder
         uses: actions/setup-go@v6
         with:
           go-version-file: geoip/go.mod
           cache-dependency-path: geoip/go.sum
-
-      - name: Prepare subnets lists
-        run: |
-          mkdir -p geoip/input && cd geoip/input
-          declare -a subnets=(
-            "cloudflare"
-            "cloudfront"
-            "digitalocean"
-            "discord"
-            "google_meet"
-            "hetzner"
-            "meta"
-            "ovh"
-            "telegram"
-            "twitter"
-          )
-          for subnet in "${subnets[@]}"; do
-            dst="${subnet//_/-}"
-            ln "../../lists/Subnets/IPv4/${subnet}.lst" "$dst"
-            cat "../../lists/Subnets/IPv6/${subnet}.lst" >> "$dst"
-          done
-          ln "../../lists/Subnets/IPv4/roblox.lst" "roblox"
 
       - name: Build subnets .dat files
         run: |

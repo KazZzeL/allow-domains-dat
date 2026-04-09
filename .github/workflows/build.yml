@@ -79,9 +79,9 @@ jobs:
           )
           for group in "${!groups[@]}"; do
             for lst in ./"$group"/*; do
-              [ -f "$lst" ] || continue
+              [[ -f "$lst" ]] || continue
               list="$(basename "$lst" .lst | tr '_' '-')"
-              [ "$list == "${list,,}" ] || continue
+              [[ "$list" == "${list,,}" ]] || continue
               dest="${input}/${list}${groups[$group]}"
               mkdir -p "$dest"
               ln "$lst" "${dest}/list"
@@ -92,9 +92,9 @@ jobs:
           ip_input="../geoip/input"
           mkdir -p "$ip_input"
           for lst in ./Subnets/*/*; do
-            [ -f "$lst" ] || continue
+            [[ -f "$lst" ]] || continue
             list="$(basename "$lst" .lst | tr '_' '-')"
-            [ "$list == "${list,,}" ] || continue
+            [[ "$list" == "${list,,}" ]] || continue
             cat "$lst" >> "${ip_input}/${list}"
           done
 
@@ -126,7 +126,7 @@ jobs:
           mkdir output
           go run ./ -c "../publish/geoip_config.json"
           for dat in ./output/*.dat; do
-            [ -f "$dat" ] || continue
+            [[ -f "$dat" ]] || continue
             ln "$dat" "../publish/$(basename "$dat" .dat)-subnets.dat"
           done
 

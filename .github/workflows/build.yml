@@ -14,6 +14,11 @@ on:
         description: 'Release message'
         required: true
         type: string
+      trigger:
+        description: 'Trigger routing build'
+        required: false
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -23,11 +28,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout config
+      - name: Checkout config and custom lists
         uses: actions/checkout@v6
         with:
           sparse-checkout: |
             geoip_config.json
+            lists
           sparse-checkout-cone-mode: false
           path: publish
 
@@ -71,7 +77,7 @@ jobs:
           ln "Russia/outside-raw.lst" "Countries/russia-outside.lst"
           ln "Ukraine/inside-raw.lst" "Countries/ukraine-inside.lst"
           input="../geosite/input"
-          mkdir -p "${input}"/{allow-domains,allow-categories,allow-countries,allow-services}
+          mkdir -p "$input"/{allow-domains,allow-categories,allow-countries,allow-services}
           declare -A groups=(
             ["Categories"]="-domains"
             ["Countries"]=""
@@ -91,6 +97,12 @@ jobs:
           done
           ip_input="../geoip/input"
           mkdir -p "$ip_input"
+          for lst in ../publish/lists/subnets/*; do
+            [[ -f "$lst" ]] || continue
+            list="$(basename "$lst" .lst | tr '_' '-')"
+            [[ "$list" == "${list,,}" ]] || continue
+            ln "$lst" "${ip_input}/${list}"
+          done
           for lst in ./Subnets/*/*; do
             [[ -f "$lst" ]] || continue
             list="$(basename "$lst" .lst | tr '_' '-')"
@@ -143,12 +155,12 @@ jobs:
             inputs.message ||
             github.event.head_commit.message ||
             format('new lists release: {0}', github.event.client_payload.version) }}"
-          
+
       - name: Trigger Happ routing rebuild
+        if: inputs.trigger != 'false'
         uses: peter-evans/repository-dispatch@v4
         with:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
           client-payload: '{"version": "${{ steps.release.outputs.version }}"}'
-          

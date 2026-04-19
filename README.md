@@ -13,112 +13,119 @@
 ## Ссылки для скачивания
 ### Универсальные Geosite и Geoip
 
-- **allow-domains.dat** (содержит категории `anime`, `block`, `geoblock`, `hodca`, `news`, `porn`, `russia-inside`, `russia-outside`, `ukraine-inside`, `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-ai`, `google-meet`, `google-play`, `hdrezka`, `hetzner`, `meta`, `ovh`, `roblox`, `telegram`, `tiktok`, `twitter`, `youtube`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat)
-- **allow-categories.dat** (содержит категории доменов `anime`, `block`, `geoblock`, `hodca`, `news`, `porn`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-categories.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-categories.dat)
-- **allow-countries.dat** (содержит категории доменов `russia-inside`, `russia-outside`, `ukraine-inside`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat)
-- **allow-services** (содержит категории доменов `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-ai`, `google-meet`, `google-play`, `hdrezka`, `hetzner`, `meta`, `ovh`, `roblox`, `telegram`, `tiktok`, `twitter`, `youtube`)
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat)
-- **allow-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-meet`, `hetzner`, `meta`, `ovh`, `roblox`, `telegram`, `twitter`):
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat)
+- **allow-domains.dat** (содержит категории `anime`, `block`, `geoblock`, `hodca`, `news`, `porn`, `russia-inside`, `russia-outside`, `ukraine-inside`, `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-ai`, `google-meet`, `google-play`, `hdrezka`, `hetzner`, `meta`, `ovh`, `roblox`, `telegram`, `tiktok`, `twitter`, `youtube`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-domains.dat*
+- **allow-categories.dat** (содержит категории доменов `anime`, `block`, `geoblock`, `hodca`, `news`, `porn`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-categories.dat*
+- **allow-countries.dat** (содержит категории доменов `russia-inside`, `russia-outside`, `ukraine-inside`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-countries.dat*
+- **allow-services** (содержит категории доменов `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-ai`, `google-meet`, `google-play`, `hdrezka`, `hetzner`, `meta`, `ovh`, `roblox`, `telegram`, `tiktok`, `twitter`, `youtube`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-services.dat*
+- **allow-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-meet`, `hetzner`, `meta`, `ovh`, `private`, `private-fakedns`, `roblox`, `telegram`, `twitter`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/allow-subnets.dat*
 
 
 ### Geosite по признаку, откуда будет совершаться доступ
 **!!! содержат только категорию** `list`
-- **russia-inside.dat** (содержит домены `russia-inside`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/russia-inside.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/russia-inside.dat)
-- **russia-outside.dat** (содержит домены `russia-outside`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/russia-outside.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/russia-outside.dat)
-- **ukraine-inside.dat** (содержит домены `ukraine-inside`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ukraine-inside.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ukraine-inside.dat)
+
+- **russia-inside.dat** (содержит домены `russia-inside`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/russia-inside.dat*
+- **russia-outside.dat** (содержит домены `russia-outside`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/russia-outside.dat*
+- **ukraine-inside.dat** (содержит домены `ukraine-inside`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ukraine-inside.dat*
 
 
 ### Geosite по признаку, к какой категории ресурсов будет совершаться доступ
 **!!! содержат только категорию** `list`
-- **anime-domains.dat** (содержит домены `anime`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/anime-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/anime-domains.dat)
-- **block-domains.dat** (содержит домены `block`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/block-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/block-domains.dat)
-- **geoblock-domains.dat** (содержит домены `geoblock`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/geoblock-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/geoblock-domains.dat)
-- **hodca-domains.dat** (содержит домены `H.O.D.C.A`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hodca-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hodca-domains.dat)
-- **news-domains.dat** (содержит домены `news`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat)
-- **porn-domains.dat** (содержит домены `porn`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat)
+
+- **anime-domains.dat** (содержит домены `anime`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/anime-domains.dat*
+- **block-domains.dat** (содержит домены `block`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/block-domains.dat*
+- **geoblock-domains.dat** (содержит домены `geoblock`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/geoblock-domains.dat*
+- **hodca-domains.dat** (содержит домены `H.O.D.C.A`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hodca-domains.dat*
+- **news-domains.dat** (содержит домены `news`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/news-domains.dat*
+- **porn-domains.dat** (содержит домены `porn`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/porn-domains.dat*
 
 
 ### Geosite по признаку, к какому ресурсу будет совершаться доступ
+**!!! содержат только категорию** `list`
 
-- **cloudflare-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-domains.dat)
-- **cloudfront-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-domains.dat)
-- **digitalocean-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/digitalocean-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/digitalocean-domains.dat)
-- **discord-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat)
-- **google-ai-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-ai-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-ai-domains.dat)
-- **google-meet-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-meet-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-meet-domains.dat)
-- **google-play-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-play-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-play-domains.dat)
-- **hdrezka-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hdrezka-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hdrezka-domains.dat)
-- **hetzner-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-domains.dat)
-- **meta-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-domains.dat)
-- **ovh-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-domains.dat)
-- **roblox-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/roblox-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/roblox-domains.dat)
-- **telegram-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-domains.dat)
-- **tiktok-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/tiktok-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/tiktok-domains.dat)
-- **twitter-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/twitter-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/twitter-domains.dat)
-- **youtube-domains.dat** (содержит категорию `list`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/youtube-domains.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/youtube-domains.dat)
+- **cloudflare-domains.dat** (содержит домены `cloudflare`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-domains.dat*
+- **cloudfront-domains.dat** (содержит домены `cloudfront`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-domains.dat*
+- **digitalocean-domains.dat** (содержит домены `digitalocean`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/digitalocean-domains.dat*
+- **discord-domains.dat** (содержит домены `discord`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-domains.dat*
+- **google-ai-domains.dat** (содержит домены `google-ai`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-ai-domains.dat*
+- **google-meet-domains.dat** (содержит домены `google-meet`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-meet-domains.dat*
+- **google-play-domains.dat** (содержит домены `google-play`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-play-domains.dat*
+- **hdrezka-domains.dat** (содержит домены `hdrezka`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hdrezka-domains.dat*
+- **hetzner-domains.dat** (содержит домены `hetzner`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-domains.dat*
+- **meta-domains.dat** (содержит домены `meta`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-domains.dat*
+- **ovh-domains.dat** (содержит домены `ovh`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-domains.dat*
+- **roblox-domains.dat** (содержит домены `roblox`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/roblox-domains.dat*
+- **telegram-domains.dat** (содержит домены `telegram`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-domains.dat*
+- **tiktok-domains.dat** (содержит домены `tiktok`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/tiktok-domains.dat*
+- **twitter-domains.dat** (содержит домены `twitter`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/twitter-domains.dat*
+- **youtube-domains.dat** (содержит домены `youtube`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/youtube-domains.dat*
 
 
 ### Geoip по признаку, откуда будет совершаться доступ
 
-- **ipv4-subnets.dat** (содержит `IPv4` подсети для `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-meet`, `hetzner`, `meta`, `ovh`, `roblox`, `telegram`, `twitter`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat)
-- **ipv6-subnets.dat** (содержит `IPv6` подсети для `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-meet`, `hetzner`, `meta`, `ovh`, `telegram`, `twitter`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat)
+- **ipv4-subnets.dat** (содержит `IPv4` подсети для `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-meet`, `hetzner`, `meta`, `ovh`, `private`, `private-fakedns`, `roblox`, `telegram`, `twitter`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv4-subnets.dat*
+- **ipv6-subnets.dat** (содержит `IPv6` подсети для `cloudflare`, `cloudfront`, `digitalocean`, `discord`, `google-meet`, `hetzner`, `meta`, `ovh`, `private`, `private-fakedns`, `telegram`, `twitter`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ipv6-subnets.dat*
 
 
 ### Geoip по признаку, к какому ресурсу будет совершаться доступ
 
-- **cloudflare-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `cloudflare`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat)
-- **cloudfront-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `cloudfront`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-subnets.dat)
-- **digitalocean-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `digitalocean`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/digitalocean-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/digitalocean-subnets.dat)
-- **discord-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `discord`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat)
-- **google-meet-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `google meet`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-meet-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-meet-subnets.dat)
-- **hetzner-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `hetzner`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-subnets.dat)
-- **meta-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `meta`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-subnets.dat)
-- **ovh-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `ovh`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-subnets.dat)
-- **roblox-subnets.dat** (содержит `IPv4` подсети для `roblox`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/roblox-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/roblox-subnets.dat)
-- **telegram-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `telegram`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-subnets.dat)
-- **twitter-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `twitter`): 
-  - [https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/twitter-subnets.dat](https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/twitter-subnets.dat)
+- **cloudflare-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `cloudflare`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudflare-subnets.dat*
+- **cloudfront-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `cloudfront`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/cloudfront-subnets.dat*
+- **digitalocean-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `digitalocean`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/digitalocean-subnets.dat*
+- **discord-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `discord`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/discord-subnets.dat*
+- **google-meet-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `google meet`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/google-meet-subnets.dat*
+- **hetzner-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `hetzner`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/hetzner-subnets.dat*
+- **meta-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `meta`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/meta-subnets.dat*
+- **ovh-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `ovh`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/ovh-subnets.dat*
+- **private-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `private`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/private-subnets.dat*
+- **private-fakedns-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `private-fakedns`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/private-fakedns-subnets.dat*
+- **roblox-subnets.dat** (содержит `IPv4` подсети для `roblox`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/roblox-subnets.dat*
+- **telegram-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `telegram`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/telegram-subnets.dat*
+- **twitter-subnets.dat** (содержит `IPv4` и `IPv6` подсети для `twitter`):
+  - *https://github.com/KazZzeL/allow-domains-dat/releases/latest/download/twitter-subnets.dat*
 
 
 ## Примеры конфигураций

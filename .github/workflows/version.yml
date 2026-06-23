@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout current release version
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           sparse-checkout: |
             latest_version.txt

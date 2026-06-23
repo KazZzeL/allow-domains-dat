@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout config and custom lists
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           sparse-checkout: |
             geoip_config.json
@@ -38,7 +38,7 @@ jobs:
           path: publish
 
       - name: Checkout lists
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: itdoginfo/allow-domains
           sparse-checkout: |
@@ -52,7 +52,7 @@ jobs:
           path: lists
 
       - name: Checkout geosite builder
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: v2fly/domain-list-community
           sparse-checkout: |
@@ -64,7 +64,7 @@ jobs:
           path: geosite
 
       - name: Checkout geoip builder
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: v2fly/geoip
           path: geoip

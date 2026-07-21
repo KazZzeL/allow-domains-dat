@@ -111,7 +111,7 @@ jobs:
           done
 
       - name: Setup Go for geosite builder
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version-file: geosite/go.mod
           cache-dependency-path: geosite/go.sum
@@ -127,7 +127,7 @@ jobs:
           done
 
       - name: Setup Go for geoip builder
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version-file: geoip/go.mod
           cache-dependency-path: geoip/go.sum

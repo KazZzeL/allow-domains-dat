@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout config and custom lists
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           sparse-checkout: |
             geoip_config.json
@@ -38,7 +38,7 @@ jobs:
           path: publish
 
       - name: Checkout lists
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: itdoginfo/allow-domains
           sparse-checkout: |
@@ -52,7 +52,7 @@ jobs:
           path: lists
 
       - name: Checkout geosite builder
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: v2fly/domain-list-community
           sparse-checkout: |
@@ -64,7 +64,7 @@ jobs:
           path: geosite
 
       - name: Checkout geoip builder
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: v2fly/geoip
           path: geoip
@@ -111,7 +111,7 @@ jobs:
           done
 
       - name: Setup Go for geosite builder
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: geosite/go.mod
           cache-dependency-path: geosite/go.sum
@@ -127,7 +127,7 @@ jobs:
           done
 
       - name: Setup Go for geoip builder
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: geoip/go.mod
           cache-dependency-path: geoip/go.sum
@@ -158,7 +158,7 @@ jobs:
 
       - name: Trigger Happ routing rebuild
         if: inputs.trigger != 'false'
-        uses: peter-evans/repository-dispatch@v4
+        uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
         with:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing

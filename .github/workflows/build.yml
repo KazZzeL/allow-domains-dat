@@ -142,16 +142,25 @@ jobs:
             ln "$dat" "../publish/$(basename "$dat" .dat)-subnets.dat"
           done
 
+      - name: Generate checksums
+        run: cd publish && sha256sum *.dat > checksums.txt
+
+      - name: Set release tag
+        run: echo "TAG_NAME=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+
       - name: Release and upload assets
-        id: release
-        run: |
-          cd publish
-          RELEASE_NAME="$(date +'%Y-%m-%d_%H-%M-%S')"
-          gh release create "$RELEASE_NAME" -t "$RELEASE_NAME" -n "${{ env.RELEASE_MSG }}" ./*.dat
-          echo "version=$RELEASE_NAME" >> $GITHUB_OUTPUT
+        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
+        with:
+          tag_name: "${{ env.TAG_NAME }}"
+          name: "${{ env.TAG_NAME }}"
+          body: "${{ env.RELEASE_MESSAGE }}"
+          prerelease: false
+          draft: false
+          files: |
+            publish/*.dat
+            publish/checksums.txt
         env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE_MSG: "${{
+          RELEASE_MESSAGE: "${{
             inputs.message ||
             github.event.head_commit.message ||
             format('new lists release: {0}', github.event.client_payload.version) }}"
@@ -163,4 +172,4 @@ jobs:
           token: ${{ secrets.HAPP_ROUTING_TOKEN }}
           repository: KazZzeL/allow-domains-happ-routing
           event-type: trigger-routing-build
-          client-payload: '{"version": "${{ steps.release.outputs.version }}"}'
+          client-payload: '{"version": "${{ env.TAG_NAME }}"}'

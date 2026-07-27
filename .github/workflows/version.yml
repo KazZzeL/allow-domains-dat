@@ -41,7 +41,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7.2.0
         with:
-          commit_message: "chore: new lists release (${{ steps.version.outputs.value }})"
+          commit_message: "chore: new lists release (${{ steps.diff.outputs.version }})"
           file_pattern: "latest_version.txt"
           skip_push: false
 

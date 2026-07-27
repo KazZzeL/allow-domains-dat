@@ -156,9 +156,11 @@ jobs:
           body: "${{ env.RELEASE_MESSAGE }}"
           prerelease: false
           draft: false
+          working_directory: publish
           files: |
-            publish/*.dat
-            publish/checksums.txt
+            *.dat
+            checksums.txt
+          fail_on_unmatched_files: true
         env:
           RELEASE_MESSAGE: "${{
             inputs.message ||

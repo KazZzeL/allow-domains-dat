@@ -5,6 +5,9 @@ on:
     - cron: '0 */1 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-version:
     runs-on: ubuntu-slim
@@ -16,6 +19,7 @@ jobs:
           sparse-checkout: |
             latest_version.txt
           sparse-checkout-cone-mode: false
+          persist-credentials: true
 
       - name: Fetch latest release version
         run: |
@@ -25,27 +29,25 @@ jobs:
           fi
 
       - name: Check for changed release version
-        id: version
+        id: diff
         run: |
-          if [ -z "`git status --porcelain`" ]; then
+          if [[ -z "$(git status --porcelain)" ]]; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            echo -e "changed=true\nvalue=$(head -n 1 latest_version.txt)" >> $GITHUB_OUTPUT
+            echo -e "changed=true\nversion=$(head -n 1 latest_version.txt)" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit changed release version
-        if: steps.version.outputs.changed == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -am "chore: new lists release (${{ steps.version.outputs.value }})"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+        if: steps.diff.outputs.changed == 'true'
+        uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7.2.0
+        with:
+          commit_message: "chore: new lists release (${{ steps.version.outputs.value }})"
+          file_pattern: "latest_version.txt"
+          skip_push: false
 
       - name: Trigger .dat files build
-        if: steps.version.outputs.changed == 'true'
+        if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
         with:
           event-type: trigger-dat-build
-          client-payload: '{"version": "${{ steps.version.outputs.value }}"}'
+          client-payload: '{"version": "${{ steps.diff.outputs.version }}"}'
